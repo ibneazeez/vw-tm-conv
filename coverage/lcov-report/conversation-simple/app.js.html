@@ -1,0 +1,350 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <title>Code coverage report for conversation-simple\app.js</title>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="../prettify.css" />
+    <link rel="stylesheet" href="../base.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style type='text/css'>
+        .coverage-summary .sorter {
+            background-image: url(../sort-arrow-sprite.png);
+        }
+    </style>
+</head>
+<body>
+<div class='wrapper'>
+  <div class='pad1'>
+    <h1>
+      <a href="../index.html">all files</a> / <a href="index.html">conversation-simple/</a> app.js
+    </h1>
+    <div class='clearfix'>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">32.26% </span>
+        <span class="quiet">Statements</span>
+        <span class='fraction'>10/31</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">0% </span>
+        <span class="quiet">Branches</span>
+        <span class='fraction'>0/24</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">0% </span>
+        <span class="quiet">Functions</span>
+        <span class='fraction'>0/3</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">32.26% </span>
+        <span class="quiet">Lines</span>
+        <span class='fraction'>10/31</span>
+      </div>
+    </div>
+  </div>
+  <div class='status-line low'></div>
+<pre><table class="coverage">
+<tr><td class="line-count quiet">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72
+73
+74
+75
+76
+77
+78
+79
+80
+81
+82
+83
+84
+85
+86
+87
+88
+89
+90
+91
+92
+93
+94
+95
+96</td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">/**
+ * Copyright 2015 IBM Corp. All Rights Reserved.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *      http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+&nbsp;
+'use strict';
+&nbsp;
+var express = require('express'); // app server
+var bodyParser = require('body-parser'); // parser for post requests
+var Conversation = require('watson-developer-cloud/conversation/v1'); // watson sdk
+&nbsp;
+var app = express();
+&nbsp;
+// Bootstrap application settings
+app.use(express.static('./public')); // load UI from public folder
+app.use(bodyParser.json());
+&nbsp;
+// Create the service wrapper
+var conversation = new Conversation({
+  // If unspecified here, the CONVERSATION_USERNAME and CONVERSATION_PASSWORD env properties will be checked
+  // After that, the SDK will fall back to the bluemix-provided VCAP_SERVICES environment property
+  //'username': process.env.CONVERSATION_USERNAME,
+  //'password': process.env.CONVERSATION_PASSWORD,
+  'version_date': '2017-05-26'
+});
+&nbsp;
+// Endpoint to be call from the client side
+app.post('/api/message', <span class="fstat-no" title="function not covered" >function(req, res) {</span>
+<span class="cstat-no" title="statement not covered" >  var workspace = process.env.WORKSPACE_ID || '&lt;workspace-id&gt;';</span>
+<span class="cstat-no" title="statement not covered" >  if (!workspace || workspace === '&lt;workspace-id&gt;') {</span>
+<span class="cstat-no" title="statement not covered" >    return res.json({</span>
+      'output': {
+        'text': 'The app has not been configured with a &lt;b&gt;WORKSPACE_ID&lt;/b&gt; environment variable. Please refer to the ' + '&lt;a href="https://github.com/watson-developer-cloud/conversation-simple"&gt;README&lt;/a&gt; documentation on how to set this variable. &lt;br&gt;' + 'Once a workspace has been defined the intents may be imported from ' + '&lt;a href="https://github.com/watson-developer-cloud/conversation-simple/blob/master/training/car_workspace.json"&gt;here&lt;/a&gt; in order to get a working application.'
+      }
+    });
+  }
+<span class="cstat-no" title="statement not covered" >  var payload = {</span>
+    workspace_id: workspace,
+    context: req.body.context || {},
+    input: req.body.input || {}
+  };
+&nbsp;
+  // Send the input to the conversation service
+<span class="cstat-no" title="statement not covered" >  conversation.message(payload, <span class="fstat-no" title="function not covered" >function(err, data) {</span></span>
+<span class="cstat-no" title="statement not covered" >    if (err) {</span>
+<span class="cstat-no" title="statement not covered" >      return res.status(err.code || 500).json(err);</span>
+    }
+<span class="cstat-no" title="statement not covered" >    return res.json(updateMessage(payload, data));</span>
+  });
+});
+&nbsp;
+/**
+ * Updates the response text using the intent confidence
+ * @param  {Object} input The request to the Conversation service
+ * @param  {Object} response The response from the Conversation service
+ * @return {Object}          The response with the updated message
+ */
+<span class="fstat-no" title="function not covered" >function updateMessage(input, response) {</span>
+<span class="cstat-no" title="statement not covered" >  var responseText = null;</span>
+<span class="cstat-no" title="statement not covered" >  if (!response.output) {</span>
+<span class="cstat-no" title="statement not covered" >    response.output = {};</span>
+  } else {
+<span class="cstat-no" title="statement not covered" >    return response;</span>
+  }
+<span class="cstat-no" title="statement not covered" >  if (response.intents &amp;&amp; response.intents[0]) {</span>
+<span class="cstat-no" title="statement not covered" >    var intent = response.intents[0];</span>
+    // Depending on the confidence of the response the app can return different messages.
+    // The confidence will vary depending on how well the system is trained. The service will always try to assign
+    // a class/intent to the input. If the confidence is low, then it suggests the service is unsure of the
+    // user's intent . In these cases it is usually best to return a disambiguation message
+    // ('I did not understand your intent, please rephrase your question', etc..)
+<span class="cstat-no" title="statement not covered" >    if (intent.confidence &gt;= 0.75) {</span>
+<span class="cstat-no" title="statement not covered" >      responseText = 'I understood your intent was ' + intent.intent;</span>
+    } else <span class="cstat-no" title="statement not covered" >if (intent.confidence &gt;= 0.5) {</span>
+<span class="cstat-no" title="statement not covered" >      responseText = 'I think your intent was ' + intent.intent;</span>
+    } else {
+<span class="cstat-no" title="statement not covered" >      responseText = 'I did not understand your intent';</span>
+    }
+  }
+<span class="cstat-no" title="statement not covered" >  response.output.text = responseText;</span>
+<span class="cstat-no" title="statement not covered" >  return response;</span>
+}
+&nbsp;
+module.exports = app;
+&nbsp;</pre></td></tr>
+</table></pre>
+<div class='push'></div><!-- for sticky footer -->
+</div><!-- /wrapper -->
+<div class='footer quiet pad2 space-top1 center small'>
+  Code coverage
+  generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Wed Nov 01 2017 15:57:32 GMT+0530 (India Standard Time)
+</div>
+</div>
+<script src="../prettify.js"></script>
+<script>
+window.onload = function () {
+        if (typeof prettyPrint === 'function') {
+            prettyPrint();
+        }
+};
+</script>
+<script src="../sorter.js"></script>
+</body>
+</html>
