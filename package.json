@@ -19,10 +19,12 @@
   },
   "license": "Apache-2.0",
   "dependencies": {
+    "angularjs": "0.0.1",
     "body-parser": "^1.18.2",
     "dotenv": "^2.0.0",
     "express": "^4.16.2",
-    "watson-developer-cloud": "^2.41.1"
+    "phantomjs": "^2.1.7",
+    "watson-developer-cloud": "^2.42.0"
   },
   "devDependencies": {
     "babel-eslint": "^6.0.4",
@@ -31,7 +33,7 @@
     "eslint": "^2.8.0",
     "istanbul": "^0.4.2",
     "mocha": "^2.4.5",
-    "phantomjs-prebuilt": "^2.1.15",
+    "phantomjs-prebuilt": "^2.1.16",
     "supertest": "^1.2.0"
   },
   "engines": {
