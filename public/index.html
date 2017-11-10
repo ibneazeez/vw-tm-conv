@@ -16,22 +16,24 @@
 		<div class="Vidage__image"></div>
 
 		<video id="VidageVideo" class="Vidage__video" preload="metadata" loop
-			autoplay muted>
+			autoplay controls>
 			<source src="VW TIGUAN 2017.mp4" type="video/mp4">
 		</video>
 
 		<div class="Vidage__backdrop"></div>
 	</div>
 	<div>
-		<div id="view-slide-button" class="button"
-			style="position: absolute; right: 0; bottom: 0;z-index=-1">
-			<div ng-show="viewchat=='false'">
-				<img class="option" src="../img/chat_image_resume.png"
-					style="width: 40px" ng-click="chatfunction()">
-			</div>
-			<div ng-show="viewchat" style="padding-right: 92.75%;">
-				<img class="option" src="../img/chat_image_resume.png"
-					style="width: 40px" ng-click="chatfunction()">
+		<div style="padding: 22px 0 0 0;">
+			<div id="view-slide-button" class="button"
+				style="position:fixed;right:0;bottom:0;">
+				<div ng-show="viewchat=='false'">
+					<img class="option" src="../img/chat_open_button.png"
+						style="width: 40px" ng-click="chatfunction()">
+				</div>
+				<div ng-show="viewchat">
+					<img class="option" src="../img/chat_close_button.png"
+						style="width: 40px" ng-click="chatfunction()">
+				</div>
 			</div>
 		</div>
 		<div id="payload-column" class="fixed-column content-column"
