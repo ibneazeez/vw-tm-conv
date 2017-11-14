@@ -1,9 +1,10 @@
-'use strict';
+/*'use strict';
 
 var app = angular.module('myApp', ['ngAnimate']);
 
 app.controller('viewController', ['$scope', function ($scope) {
 	$scope.viewchat="false";
+	$scope.enablemic="false";
 	
 	$scope.chatfunction=function(){
 		if($scope.viewchat=="false"){
@@ -15,4 +16,15 @@ app.controller('viewController', ['$scope', function ($scope) {
 			document.getElementById("VidageVideo").play();
 		}
 	};
-}]);
+	$scope.enableMicFunc=function(){
+		if($scope.enablemic=="false"){
+			$scope.enablemic = "true";
+			enableMicrophone("true");
+			speechtotextApi();
+		}
+		else{
+			$scope.enablemic = "false";
+			enableMicrophone("false");
+		}
+	};	
+}]);*/

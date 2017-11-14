@@ -1,4 +1,4 @@
-<html ng-app="myApp">
+<html>
 <head>
 <base href="/">
 <title>Conversation Chat App</title>
@@ -11,7 +11,7 @@
 <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
 <link rel="stylesheet" href="css/app.css">
 </head>
-<body ng-controller="viewController">
+<body>
 	<div class="Vidage">
 		<div class="Vidage__image"></div>
 
@@ -26,40 +26,47 @@
 		<div style="padding: 22px 0 0 0;">
 			<div id="view-slide-button" class="button"
 				style="position:fixed;right:0;bottom:0;">
-				<div ng-show="viewchat=='false'">
+				<div id="chatOpen" title="Click Here to Chat for more details...">
 					<img class="option" src="../img/chat_open_button.png"
-						style="width: 40px" ng-click="chatfunction()">
+						style="width: 40px" onClick="chatfunction()">
 				</div>
-				<div ng-show="viewchat">
+				<div id="chatClose" class="hide">
 					<img class="option" src="../img/chat_close_button.png"
-						style="width: 40px" ng-click="chatfunction()">
+						style="width: 40px" onClick="chatfunction()">
 				</div>
 			</div>
 		</div>
-		<div id="payload-column" class="fixed-column content-column"
-			ng-show="viewchat">
+		<div id="payload-column" class="fixed-column content-column hide">
 			<div id="chat-column-holder" class="responsive-column content-column">
 				<div class="chat-column">
 					<div id="scrollingChat"></div>
-					<label for="textInput" class="inputOutline"> <input
-						id="textInput" class="input responsive-column"
-						placeholder="Type something" type="text"
-						onkeydown="ConversationPanel.inputKeyDown(event, this)">
-					</label>
+					<div>
+						<div style="position:fixed;right:48px;">
+							<img id="micOn" class="option" src="../img/microphone-icon.png"
+										style="width: 40px" onClick="enableMicFunc()">
+							<img id="micOff" class="option hide" src="../img/microphone-icon_enable.png"
+								style="width: 40px" onClick="enableMicFunc()" >
+						</div>
+						<div style="width:97%">
+							<label for="textInput" class="inputOutline"> <input
+								id="textInput" class="input responsive-column"
+								placeholder="Type something" type="text"
+								onkeydown="ConversationPanel.inputKeyDown(event, this)">
+							</label>
+						</div>
+					</div>
 				</div>
 			</div>
 		</div>
 	</div>
 
-	<script
-		src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.25/angular.min.js"></script>
-	<script
-		src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.25/angular-animate.min.js"></script>
+	<script src="js/jquery-3.2.1.min.js"></script>	
+	<script src="bower_components/watson-speech/dist/watson-speech.js"></script>
+	<script src="bower_components/fetch/fetch.js"></script>
 	<script src="js/common.js"></script>
 	<script src="js/api.js"></script>
 	<script src="js/conversation.js"></script>
-	<script src="js/jquery-3.2.1.min.js"></script>
-	<script src="js/appAng.js"></script>
 	<script src="js/global.js"></script>
+
 </body>
 </html>

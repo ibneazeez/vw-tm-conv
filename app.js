@@ -15,13 +15,16 @@
  */
 
 'use strict';
+const express = require('express');
+const app = express();
+const watson = require('watson-developer-cloud');
+const vcapServices = require('vcap_services');
+const expressBrowserify = require('express-browserify');
 
-var express = require('express'); // app server
 var bodyParser = require('body-parser'); // parser for post requests
-var Conversation = require('watson-developer-cloud/conversation/v1'); // watson sdk
-
-
-var app = express();
+//var Conversation = require('watson-developer-cloud/conversation/v1'); // watson sdk
+var Conversation = watson.ConversationV1 // watson sdk
+'use strict';
 
 // Bootstrap application settings
 app.use(express.static('./public')); // load UI from public folder
@@ -92,5 +95,31 @@ function updateMessage(input, response) {
   response.output.text = responseText;
   return response;
 }
+
+//text to speech token endpoint
+var ttsAuthService = new watson.AuthorizationV1(
+  Object.assign(
+    {
+      username: process.env.TEXT_TO_SPEECH_USERNAME, // or hard-code credentials here
+      password: process.env.TEXT_TO_SPEECH_PASSWORD
+    },
+    vcapServices.getCredentials('text_to_speech') // pulls credentials from environment in bluemix, otherwise returns {}
+  )
+);
+app.use('/api/text-to-speech/token', function(req, res) {
+  ttsAuthService.getToken(
+    {
+      url: watson.TextToSpeechV1.URL
+    },
+    function(err, token) {
+      if (err) {
+        console.log('Error retrieving token: ', err);
+        res.status(500).send('Error retrieving token');
+        return;
+      }
+      res.send(token);
+    }
+  );
+});
 
 module.exports = app;

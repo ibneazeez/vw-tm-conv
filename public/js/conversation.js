@@ -3,6 +3,7 @@
 /* eslint no-unused-vars: "off" */
 /* global Api: true, Common: true*/
 
+var enableMic=false;
 var ConversationPanel = (function() {
   var settings = {
     selectors: {
@@ -42,6 +43,8 @@ var ConversationPanel = (function() {
     Api.setResponsePayload = function(newPayloadStr) {
       currentResponsePayloadSetter.call(Api, newPayloadStr);
       displayMessage(JSON.parse(newPayloadStr), settings.authorTypes.watson);
+      if(enableMic)
+    	  speechtotextApi();
     };
   }
 
@@ -225,4 +228,64 @@ var ConversationPanel = (function() {
       Common.fireEvent(inputBox, 'input');
     }
   }
+	
 }());
+
+function speechtotextApi() {
+	fetch('/api/text-to-speech/token').then(function(response) {
+		return response.text();
+	}).then(function(token) {
+
+		WatsonSpeech.TextToSpeech.synthesize({
+			text : textMerge(document.querySelector('#scrollingChat').querySelectorAll('div.from-watson.latest')),
+			token : token
+		}).on('error', function(err) {
+			console.log('audio error: ', err);
+		});
+	});
+};
+
+function textMerge(nodeList){
+	var textData="";
+	for(var i=0; i<nodeList.length; i++ ){
+		textData=textData + nodeList[i].children[0].innerText;
+	}
+	return textData;
+};
+
+var viewchat='false';
+
+	function chatfunction(){
+		if(viewchat=="false"){
+			viewchat="true";
+			$("#chatOpen").hide();
+			$("#chatClose").show();
+			document.getElementById("VidageVideo").pause();
+			$("#payload-column").slideToggle();
+			
+		}
+		else{
+			viewchat="false";
+			$("#chatClose").hide();
+			$("#chatOpen").show();
+			document.getElementById("VidageVideo").play();
+			$("#payload-column").slideToggle();
+		}
+	};
+	$( function() {
+	    $( "#chatOpen" ).tooltip().tooltip( "open" );
+	});
+	function enableMicFunc() {
+		if(!enableMic){
+			enableMic=true;
+			$("#micOn").hide();
+			$("#micOff").show();
+			speechtotextApi();
+		}
+		else{
+			enableMic=false;
+			$("#micOff").hide();
+			$("#micOn").show();
+		}
+	};	
+
