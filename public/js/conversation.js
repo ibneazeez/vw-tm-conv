@@ -4,6 +4,7 @@
 /* global Api: true, Common: true*/
 
 var enableMic=false;
+var tts_audio_out = document.createElement("AUDIO");
 var ConversationPanel = (function() {
   var settings = {
     selectors: {
@@ -37,14 +38,18 @@ var ConversationPanel = (function() {
     Api.setRequestPayload = function(newPayloadStr) {
       currentRequestPayloadSetter.call(Api, newPayloadStr);
       displayMessage(JSON.parse(newPayloadStr), settings.authorTypes.user);
+      tts_audio_out.pause();
+	  tts_audio_out.currentTime = 0;
     };
 
     var currentResponsePayloadSetter = Api.setResponsePayload;
     Api.setResponsePayload = function(newPayloadStr) {
       currentResponsePayloadSetter.call(Api, newPayloadStr);
       displayMessage(JSON.parse(newPayloadStr), settings.authorTypes.watson);
-      if(enableMic)
-    	  speechtotextApi();
+      if(enableMic){
+    	tts_audio_out = document.createElement("AUDIO");
+    	speechtotextApi();
+      }
     };
   }
 
@@ -232,13 +237,16 @@ var ConversationPanel = (function() {
 }());
 
 function speechtotextApi() {
+	
 	fetch('/api/text-to-speech/token').then(function(response) {
 		return response.text();
 	}).then(function(token) {
-
 		WatsonSpeech.TextToSpeech.synthesize({
 			text : textMerge(document.querySelector('#scrollingChat').querySelectorAll('div.from-watson.latest')),
-			token : token
+			token : token,
+			voice: 'en-US_AllisonVoice',
+			autoPlay: 'true',
+			element: tts_audio_out
 		}).on('error', function(err) {
 			console.log('audio error: ', err);
 		});
@@ -286,6 +294,8 @@ var viewchat='false';
 			enableMic=false;
 			$("#micOff").hide();
 			$("#micOn").show();
+			tts_audio_out.pause();
+			tts_audio_out.currentTime = 0;
 		}
 	};	
 
