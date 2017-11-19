@@ -41,12 +41,17 @@
 				<div class="chat-column">
 					<div id="scrollingChat"></div>
 					<div>
-						<div style="position:fixed;right:48px;">
+						<div style="position:fixed;right:5px;">
 							<img id="micOn" class="option" src="../img/microphone-icon.png"
 										style="width: 40px" onClick="enableMicFunc()">
 							<img id="micOff" class="option hide" src="../img/microphone-icon_enable.png"
 								style="width: 40px" onClick="enableMicFunc()" >
-						</div>
+								<img id="spkOn" class="option hide" src="../img/speaker_On.png"
+											style="width: 29px" onClick="enableSpkFunc()">
+								<img id="spkOff" class="option " src="../img/speaker_Off.png"
+										style="width: 29px" onClick="enableSpkFunc()" >
+							</div>
+						
 						<div style="width:97%">
 							<label for="textInput" class="inputOutline"> <input
 								id="textInput" class="input responsive-column"

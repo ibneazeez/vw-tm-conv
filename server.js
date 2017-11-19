@@ -19,9 +19,14 @@
 require('dotenv').config({silent: true});
 
 var server = require('./app');
-var port = process.env.PORT || process.env.VCAP_APP_PORT || 3000;
 
-server.listen(port, function() {
+
+	// Chrome requires https to access the user's microphone unless it's a localhost url so
+	// this sets up a basic server on port 3001 using an included self-signed certificate
+	// note: this is not suitable for production use
+	// however bluemix automatically adds https support at https://<myapp>.mybluemix.net
+	
+/*server.listen(port, function() {
   // eslint-disable-next-line
   console.log('Server running on port: %d', port);
-});
+});*/

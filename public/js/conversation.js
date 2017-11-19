@@ -4,6 +4,7 @@
 /* global Api: true, Common: true*/
 
 var enableMic=false;
+var enableSpk=false;
 var tts_audio_out = document.createElement("AUDIO");
 var ConversationPanel = (function() {
   var settings = {
@@ -46,9 +47,9 @@ var ConversationPanel = (function() {
     Api.setResponsePayload = function(newPayloadStr) {
       currentResponsePayloadSetter.call(Api, newPayloadStr);
       displayMessage(JSON.parse(newPayloadStr), settings.authorTypes.watson);
-      if(enableMic){
+      if(enableSpk){
     	tts_audio_out = document.createElement("AUDIO");
-    	speechtotextApi();
+    	textToSpeechApi();
       }
     };
   }
@@ -233,11 +234,28 @@ var ConversationPanel = (function() {
       Common.fireEvent(inputBox, 'input');
     }
   }
-	
 }());
 
-function speechtotextApi() {
-	
+function inputKeyDownCode(inputBox) {
+	  //alert(inputBox.value)
+	  var context;
+	  var latestResponse = Api.getResponsePayload();
+	  if (latestResponse) {
+		  context = latestResponse.context;
+	  }
+	  
+	  // Send the user message
+	  Api.sendRequest(inputBox.value, context);
+	  
+	  // Clear input box for further messages
+	  inputBox.value = '';
+	  Common.fireEvent(inputBox, 'input');
+	  if(enableMic)
+		  speechtotextApi();
+}
+
+function textToSpeechApi() {
+		
 	fetch('/api/text-to-speech/token').then(function(response) {
 		return response.text();
 	}).then(function(token) {
@@ -251,6 +269,44 @@ function speechtotextApi() {
 			console.log('audio error: ', err);
 		});
 	});
+};
+
+var stream;
+function speechtotextApi() {
+	 if(enableMic){
+		fetch('/api/speech-to-text/token')
+		    .then(function(response) {
+		      return response.text();
+		    }).then(function (token) {
+	
+		      stream = WatsonSpeech.SpeechToText.recognizeMicrophone({
+		        token: token,
+		        outputElement: '#textInput',
+		        model:'en-GB_BroadbandModel',
+		        continuous:false
+		      });
+		      	
+		      stream.on('data', function(data) {
+		        if(data.results[0] && data.results[0].final) {
+		            //stream.stop();
+		           /* var enterKeyEvent = makeKeyPressEvent('Enter', 13, 13);
+		            $('input').trigger(enterKeyEvent);*/
+		            inputKeyDownCode($('#textInput')[0]);
+		           stream.stop();
+		           stream.end();
+		           $("#micOff").hide();
+					$("#micOn").show();
+		          console.log('stop listening.');
+		        }
+		      });
+		      stream.on('error', function(err) {
+		        console.log(err);
+		      });
+	
+		    }).catch(function(error) {
+		      console.log(error);
+		    });
+	 }
 };
 
 function textMerge(nodeList){
@@ -280,9 +336,6 @@ var viewchat='false';
 			$("#payload-column").slideToggle();
 		}
 	};
-	$( function() {
-	    $( "#chatOpen" ).tooltip().tooltip( "open" );
-	});
 	function enableMicFunc() {
 		if(!enableMic){
 			enableMic=true;
@@ -294,8 +347,22 @@ var viewchat='false';
 			enableMic=false;
 			$("#micOff").hide();
 			$("#micOn").show();
+			stream=null;
+		}
+	};	
+	function enableSpkFunc() {
+		if(!enableSpk){
+			enableSpk=true;
+			$("#spkOff").hide();
+			$("#spkOn").show();
+			textToSpeechApi();
+		}
+		else{
+			enableSpk=false;
+			$("#spkOff").show();
+			$("#spkOn").hide();
 			tts_audio_out.pause();
 			tts_audio_out.currentTime = 0;
 		}
 	};	
-
+	

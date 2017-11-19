@@ -21,6 +21,25 @@ const watson = require('watson-developer-cloud');
 const vcapServices = require('vcap_services');
 const expressBrowserify = require('express-browserify');
 
+var port = process.env.PORT || process.env.VCAP_APP_PORT || 3000;		
+app.listen(port, function() {
+	  console.log('Example IBM Watson Speech JS SDK client app & token server live at http://localhost:%s/', port);
+	});
+
+if (!process.env.VCAP_SERVICES) {
+	  const fs = require('fs');
+	  const https = require('https');
+	  const HTTPS_PORT = 3001;
+
+	  const options = {
+	    key: fs.readFileSync(__dirname + '/keys/localhost.pem'),
+	    cert: fs.readFileSync(__dirname + '/keys/localhost.cert')
+	  };
+	  https.createServer(options, app).listen(HTTPS_PORT, function() {
+	    console.log('Secure server live at https://localhost:%s/', HTTPS_PORT);
+	  });
+	}
+
 var bodyParser = require('body-parser'); // parser for post requests
 //var Conversation = require('watson-developer-cloud/conversation/v1'); // watson sdk
 var Conversation = watson.ConversationV1 // watson sdk
@@ -110,6 +129,31 @@ app.use('/api/text-to-speech/token', function(req, res) {
   ttsAuthService.getToken(
     {
       url: watson.TextToSpeechV1.URL
+    },
+    function(err, token) {
+      if (err) {
+        console.log('Error retrieving token: ', err);
+        res.status(500).send('Error retrieving token');
+        return;
+      }
+      res.send(token);
+    }
+  );
+});
+//speech to text token endpoint
+var sttAuthService = new watson.AuthorizationV1(
+  Object.assign(
+    {
+      username: process.env.SPEECH_TO_TEXT_USERNAME, // or hard-code credentials here
+      password: process.env.SPEECH_TO_TEXT_PASSWORD
+    },
+    vcapServices.getCredentials('speech_to_text') // pulls credentials from environment in bluemix, otherwise returns {}
+  )
+);
+app.use('/api/speech-to-text/token', function(req, res) {
+  sttAuthService.getToken(
+    {
+      url: watson.SpeechToTextV1.URL
     },
     function(err, token) {
       if (err) {
