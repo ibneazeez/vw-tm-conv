@@ -103,7 +103,7 @@ var ttsAuthService = new watson.AuthorizationV1(
       username: process.env.TEXT_TO_SPEECH_USERNAME, // or hard-code credentials here
       password: process.env.TEXT_TO_SPEECH_PASSWORD
     },
-    vcapServices.getCredentials('text_to_speech') // pulls credentials from environment in bluemix, otherwise returns {}
+    vcapServices.getCredentials('anamika-ts-credidential') // pulls credentials from environment in bluemix, otherwise returns {}
   )
 );
 app.use('/api/text-to-speech/token', function(req, res) {
