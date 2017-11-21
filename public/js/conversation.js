@@ -238,6 +238,7 @@ var ConversationPanel = (function() {
 
 function inputKeyDownCode(inputBox) {
 	  //alert(inputBox.value)
+	if(enableMic){
 	  var context;
 	  var latestResponse = Api.getResponsePayload();
 	  if (latestResponse) {
@@ -250,8 +251,12 @@ function inputKeyDownCode(inputBox) {
 	  // Clear input box for further messages
 	  inputBox.value = '';
 	  Common.fireEvent(inputBox, 'input');
-	  if(enableMic)
-		  speechtotextApi();
+	  //speechtotextApi();
+	}else
+	{
+		inputBox.value = '';
+		Common.fireEvent(inputBox, 'input');
+	}
 }
 
 function textToSpeechApi() {
@@ -283,7 +288,10 @@ function speechtotextApi() {
 		        token: token,
 		        outputElement: '#textInput',
 		        model:'en-GB_BroadbandModel',
-		        continuous:false
+		        continuous:false,
+		        format: false,
+		        keepMicrophone: false,
+		        word_confidence: true
 		      });
 		      	
 		      stream.on('data', function(data) {

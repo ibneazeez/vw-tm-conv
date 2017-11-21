@@ -167,4 +167,3 @@ app.use('/api/speech-to-text/token', function(req, res) {
 });
 
 module.exports = app;
- q
