@@ -1,7 +1,7 @@
 <html>
 <head>
 <base href="/">
-<title>Conversation Chat App</title>
+<title>Anamika Chat Bot</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta property="og:image" content="conversation.svg" />
@@ -41,17 +41,25 @@
 				<div class="chat-column">
 					<div id="scrollingChat"></div>
 					<div>
-						<div style="position:fixed;right:48px;">
-							<img id="micOn" class="option" src="../img/microphone-icon.png"
-										style="width: 40px" onClick="enableMicFunc()">
-							<img id="micOff" class="option hide" src="../img/microphone-icon_enable.png"
-								style="width: 40px" onClick="enableMicFunc()" >
+						<div style="position:fixed;right:0px;bottom:46px">
+							<div class="right" >
+								<img id="micOn" class="option" src="../img/speaker_Off.png"
+											style="width: 82px" onClick="enableMicFunc()">
+								<img id="micOff" class="option hide" src="../img/speaker_On.gif"
+									style="width: 82px" onClick="enableMicFunc()" >
+							</div>
+							<div class="right" style="float: right;padding-right: 14px;">
+							  <button id="start_button" onclick="startButton(event)" style="background-color:transparent;border:transparent">
+							    <img id="start_img" src="img/mic_Off.png" alt="Start" style="width:40px"></button>
+							</div>
 						</div>
-						<div style="width:97%">
+						<div id="results" style="width:97%">
 							<label for="textInput" class="inputOutline"> <input
 								id="textInput" class="input responsive-column"
 								placeholder="Type something" type="text"
 								onkeydown="ConversationPanel.inputKeyDown(event, this)">
+								<span id="final_span" class="final hide"></span>
+						  		<span id="interim_span" class="interim hide"></span>
 							</label>
 						</div>
 					</div>
@@ -67,6 +75,7 @@
 	<script src="js/api.js"></script>
 	<script src="js/conversation.js"></script>
 	<script src="js/global.js"></script>
+	<script src="js/stt.js"></script>
 
 </body>
 </html>
