@@ -26,6 +26,7 @@
   "dependencies": {
     "angularjs": "0.0.1",
     "body-parser": "^1.18.2",
+    "bootstrap": "^3.3.7",
     "bower": "^1.8.0",
     "defaults": "^1.0.3",
     "dotenv": "^4.0.0",

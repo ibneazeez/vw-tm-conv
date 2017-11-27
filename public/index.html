@@ -10,6 +10,7 @@
 	content="Sample application that shows how to use the Conversation API to identify user intents" />
 <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
 <link rel="stylesheet" href="css/app.css">
+<link rel="stylesheet" href="css/app2.css">
 </head>
 <body>
 	<div class="Vidage">
@@ -26,10 +27,7 @@
 		<div style="padding: 22px 0 0 0;">
 			<div id="view-slide-button" class="button"
 				style="position:fixed;right:0;bottom:0;">
-				<div id="chatOpen" title="Click Here to Chat for more details...">
-					<img class="option" src="../img/chat_open_button.png"
-						style="width: 40px" onClick="chatfunction()">
-				</div>
+				<div id="chatOpen"><a class="button1" onClick="chatfunction()">Click Here For Live Chat!<i class="tt"></i></a></div>
 				<div id="chatClose" class="hide">
 					<img class="option" src="../img/chat_close_button.png"
 						style="width: 40px" onClick="chatfunction()">
@@ -69,6 +67,7 @@
 	</div>
 
 	<script src="js/jquery-3.2.1.min.js"></script>	
+	<script src="js/bootstrap.js"></script>	
 	<script src="bower_components/watson-speech/dist/watson-speech.js"></script>
 	<script src="bower_components/fetch/fetch.js"></script>
 	<script src="js/common.js"></script>
